@@ -10,24 +10,29 @@ namespace ETD2LAB1.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+
+        static ArbolB<Gaseosa> NuevoArbol = new ArbolB<Gaseosa>(3);
+
+
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public ArbolB<Gaseosa> Get()//public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return NuevoArbol;
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public ActionResult<Gaseosa> Get(Gaseosa buscar)
         {
-            return "value";
+            return NuevoArbol.BuscarEnArbol(buscar);
         }
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post(Gaseosa nueva)
         {
+            NuevoArbol.InsertarEnHoja(nueva);
         }
 
         // PUT api/values/5
